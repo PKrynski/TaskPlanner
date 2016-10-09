@@ -16,12 +16,19 @@ public class NewTaskActivity extends AppCompatActivity {
 
     public void createNewTaskList(View view) {
 
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String taskName = editText.getText().toString();
+        EditText editTextName = (EditText) findViewById(R.id.editTextTaskName);
+        String taskName = editTextName.getText().toString();
+
+        EditText editTextDescription = (EditText) findViewById(R.id.editTextTaskDescription);
+        String taskDescription = editTextDescription.getText().toString();
 
         if("".equals(taskName)) {
             Toast.makeText(this, "You have to enter a task name.", Toast.LENGTH_SHORT).show();
         } else {
+
+            Task newTask = new Task(taskName, taskDescription, null);
+            TasksDB.addNewTask(newTask);
+
             String toastmessage = "New task '" + taskName + "' created!";
             Toast.makeText(this, toastmessage, Toast.LENGTH_LONG).show();
             finish();

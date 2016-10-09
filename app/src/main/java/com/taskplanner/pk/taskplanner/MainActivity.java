@@ -2,6 +2,7 @@ package com.taskplanner.pk.taskplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +13,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ArrayList<Task> myTasks = TasksDB.getMyTasks();
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Toast.makeText(this, "onResume called - tasks loaded",Toast.LENGTH_LONG).show();
+        loadAllTasks();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +114,43 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void loadAllTasks() {
+
+        ArrayAdapter<Task> adapter = new myListAdapter();
+
+        ListView list = (ListView) findViewById(R.id.tasksListView);
+        list.setAdapter(adapter);
+    }
+
     public void runNewTaskActivity() {
         Intent intent = new Intent(this, NewTaskActivity.class);
         startActivity(intent);
+    }
+
+    private class myListAdapter extends ArrayAdapter<Task> {
+
+        public myListAdapter() {
+            super(MainActivity.this, R.layout.task_item_view, myTasks);
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            View itemView = convertView;
+            if(itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.task_item_view, parent, false);
+            }
+
+            Task currentTask = myTasks.get(position);
+
+            TextView nameTextView = (TextView) itemView.findViewById(R.id.item_textView_task_name);
+            nameTextView.setText(currentTask.getName());
+
+            TextView categoryTextView = (TextView) itemView.findViewById(R.id.item_textView_task_category);
+            categoryTextView.setText(currentTask.getCategory());
+
+            return itemView;
+        }
     }
 }
