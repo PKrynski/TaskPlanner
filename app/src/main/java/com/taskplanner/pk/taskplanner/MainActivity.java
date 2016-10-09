@@ -14,9 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         //Toast.makeText(this, "onResume called - tasks loaded",Toast.LENGTH_LONG).show();
         loadAllTasks();
+        registerClicks();
     }
 
     @Override
@@ -120,6 +123,23 @@ public class MainActivity extends AppCompatActivity
 
         ListView list = (ListView) findViewById(R.id.tasksListView);
         list.setAdapter(adapter);
+    }
+
+    private void registerClicks() {
+
+        Toast.makeText(MainActivity.this, "registerClicks running", Toast.LENGTH_LONG);
+
+        ListView list = (ListView) findViewById(R.id.tasksListView);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+
+                Task clickedTask = myTasks.get(position);
+
+                //TODO: open new activity with task details
+            }
+        });
+
     }
 
     public void runNewTaskActivity() {
