@@ -3,7 +3,9 @@ package com.taskplanner.pk.taskplanner;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class NewTaskActivity extends AppCompatActivity {
@@ -12,6 +14,8 @@ public class NewTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_task);
+
+        makeCategorySpinner();
     }
 
     public void createNewTaskList(View view) {
@@ -34,5 +38,14 @@ public class NewTaskActivity extends AppCompatActivity {
             finish();
         }
 
+    }
+
+    public void makeCategorySpinner() {
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerCategorySelect);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.categories_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 }
