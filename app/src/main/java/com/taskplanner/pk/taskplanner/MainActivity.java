@@ -134,9 +134,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
 
-                Task clickedTask = myTasks.get(position);
-
-                //TODO: open new activity with task details
+                displayTaskDetails(position);
             }
         });
 
@@ -144,6 +142,12 @@ public class MainActivity extends AppCompatActivity
 
     public void runNewTaskActivity() {
         Intent intent = new Intent(this, NewTaskActivity.class);
+        startActivity(intent);
+    }
+
+    public void displayTaskDetails(int id) {
+        Intent intent = new Intent(this, DisplayTaskDetailsActivity.class);
+        intent.putExtra("taskID",id);
         startActivity(intent);
     }
 
