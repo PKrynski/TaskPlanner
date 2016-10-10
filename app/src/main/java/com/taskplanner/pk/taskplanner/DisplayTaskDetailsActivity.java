@@ -26,9 +26,11 @@ public class DisplayTaskDetailsActivity extends AppCompatActivity {
         Task currentTask = myTasks.get(taskID);
 
         TextView taskName = (TextView) findViewById(R.id.displayTaskNameTextView);
+        TextView taskCategory = (TextView) findViewById(R.id.displayTaskCategoryTextView);
         TextView taskDescription = (TextView) findViewById(R.id.displayTaskDetailsTextView);
 
         taskName.setText(currentTask.getName());
+        taskCategory.setText(currentTask.getCategory());
         taskDescription.setText(currentTask.getDescription());
     }
 }

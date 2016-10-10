@@ -29,6 +29,14 @@
             android:textAllCaps="false"/>
 
         <TextView
+            android:text="Category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/displayTaskCategoryTextView"
+            android:textAlignment="textEnd"
+            android:textStyle="normal|italic"/>
+
+        <TextView
             android:text="Current task description here"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -22,5 +22,6 @@
         android:layout_below="@+id/item_textView_task_name"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:textStyle="normal|italic"/>
 </RelativeLayout>
