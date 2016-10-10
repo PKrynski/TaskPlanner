@@ -1,29 +1,48 @@
 package com.taskplanner.pk.taskplanner;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CategoriesManager {
 
-    public static ArrayList<Category> categories = new ArrayList<>();
+    public static HashMap<String, Category> categories = new HashMap<>();
 
     public void addNewCategory(String name) {
+
         Category my_category = new Category(name);
-        categories.add(my_category);
+        categories.put(name, my_category);
     }
 
-    public void addNewCategory(String name, String color) {
-        Category my_category = new Category(name,color);
-        categories.add(my_category);
+    public static void addNewCategory(String name, String color) {
+
+        Category my_category = new Category(name, color);
+        categories.put(name, my_category);
     }
 
-    public ArrayList<Category> getAllCategories() {
+    public HashMap<String, Category> getAllCategories() {
+
         return categories;
     }
 
-    private class Category {
+    public static String getCategoryColor(String categoryName) {
 
-        public String name;
-        public String color;
+        String color;
+
+        try {
+            color = categories.get(categoryName).getColor();
+        } catch (NullPointerException e) {
+            color = "default";
+        }
+
+        return color;
+    }
+
+
+
+
+    private static class Category {
+
+        private String name;
+        private String color;
 
         public Category(String name) {
             this.name = name;
@@ -33,7 +52,13 @@ public class CategoriesManager {
             this.name = name;
             this.color = color;
         }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getColor() {
+            return color;
+        }
     }
-
-
 }

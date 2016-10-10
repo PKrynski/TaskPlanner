@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -173,6 +174,17 @@ public class MainActivity extends AppCompatActivity
 
             TextView categoryTextView = (TextView) itemView.findViewById(R.id.item_textView_task_category);
             categoryTextView.setText(currentTask.getCategory());
+
+            String taskCategory = currentTask.getCategory();
+
+            CategoriesManager.addNewCategory("category","purple");  //TODO: remove line when categories are inetgrated
+
+            String color = CategoriesManager.getCategoryColor(taskCategory);
+
+            Log.d("COLOR:", color);
+
+            //TODO: Set background color based on task category
+            itemView.setBackgroundResource(R.color.colorBlue200);
 
             return itemView;
         }
