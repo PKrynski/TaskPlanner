@@ -1,36 +1,38 @@
 package com.taskplanner.pk.taskplanner;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CategoriesManager {
 
-    public static HashMap<String, Category> categories = new HashMap<>();
-    public static ArrayList<String> categoriesArrayList = new ArrayList<>();
+    private static ArrayList<Category> categoriesArrayList = new ArrayList<>();
 
     public static void addNewCategory(String name, String color) {
 
         Category my_category = new Category(name, color);
-        categories.put(name, my_category);
-        categoriesArrayList.add(name);
+        categoriesArrayList.add(my_category);
     }
 
-    public HashMap<String, Category> getAllCategories() {
+    public static ArrayList<String> getCategoriesNames() {
 
-        return categories;
+        ArrayList<String> categoriesNames = new ArrayList<>();
+
+        for( Category current_category : categoriesArrayList) {
+            categoriesNames.add(current_category.getName());
+        }
+
+        return categoriesNames;
     }
 
     public static String getCategoryColor(String categoryName) {
 
-        String color;
+        for( Category current_category : categoriesArrayList) {
 
-        try {
-            color = categories.get(categoryName).getColor();
-        } catch (NullPointerException e) {
-            color = "default";
+            if( categoryName.equals(current_category.getName()) ) {
+                return current_category.getColor();
+            }
         }
 
-        return color;
+        return "default";
     }
 
     public static void setupDefaultCategories() {

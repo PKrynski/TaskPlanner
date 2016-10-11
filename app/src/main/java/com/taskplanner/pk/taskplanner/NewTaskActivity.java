@@ -59,7 +59,7 @@ public class NewTaskActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 Log.d("SPINNER:", parent.getItemIdAtPosition(position)+"");
-                ArrayList<String> categories = CategoriesManager.categoriesArrayList;
+                ArrayList<String> categories = CategoriesManager.getCategoriesNames();
 
                 String selected_category = categories.get(position);
                 Log.d("SPINNER:", selected_category);
