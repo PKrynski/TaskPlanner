@@ -10,7 +10,7 @@ public class Task {
     public Task(String name, String description, String category) {
         this.name = name;
         this.description = description;
-        this.category = "category";     //TODO: change to category
+        this.category = category;
         this.completed = false;
     }
 

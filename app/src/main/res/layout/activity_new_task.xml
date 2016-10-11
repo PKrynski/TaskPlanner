@@ -84,7 +84,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/editTextTaskDescription"
-            android:onClick="createNewTaskList"
+            android:onClick="createNewTask"
             android:text="@string/create"/>
 
 

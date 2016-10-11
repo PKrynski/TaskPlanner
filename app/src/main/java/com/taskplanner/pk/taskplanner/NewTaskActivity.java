@@ -2,13 +2,19 @@ package com.taskplanner.pk.taskplanner;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class NewTaskActivity extends AppCompatActivity {
+
+    private String taskCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +24,7 @@ public class NewTaskActivity extends AppCompatActivity {
         makeCategorySpinner();
     }
 
-    public void createNewTaskList(View view) {
+    public void createNewTask(View view) {
 
         EditText editTextName = (EditText) findViewById(R.id.editTextTaskName);
         String taskName = editTextName.getText().toString();
@@ -30,7 +36,7 @@ public class NewTaskActivity extends AppCompatActivity {
             Toast.makeText(this, "You have to enter a task name.", Toast.LENGTH_SHORT).show();
         } else {
 
-            Task newTask = new Task(taskName, taskDescription, null);
+            Task newTask = new Task(taskName, taskDescription, taskCategory);
             TasksDB.addNewTask(newTask);
 
             String toastmessage = "New task '" + taskName + "' created!";
@@ -47,5 +53,23 @@ public class NewTaskActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.categories_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Log.d("SPINNER:", parent.getItemIdAtPosition(position)+"");
+                ArrayList<String> categories = CategoriesManager.categoriesArrayList;
+
+                String selected_category = categories.get(position);
+                Log.d("SPINNER:", selected_category);
+                taskCategory = selected_category;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 }
