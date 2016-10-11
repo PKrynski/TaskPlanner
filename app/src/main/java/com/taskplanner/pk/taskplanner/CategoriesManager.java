@@ -6,7 +6,7 @@ public class CategoriesManager {
 
     public static HashMap<String, Category> categories = new HashMap<>();
 
-    public void addNewCategory(String name) {
+    public static void addNewCategory(String name) {
 
         Category my_category = new Category(name);
         categories.put(name, my_category);
@@ -34,6 +34,15 @@ public class CategoriesManager {
         }
 
         return color;
+    }
+
+    public static void setupDefaultCategories() {
+
+        addNewCategory("Uncategorized");
+        addNewCategory("Home", "orange");
+        addNewCategory("Work", "blue");
+        addNewCategory("Sport","green");
+        addNewCategory("Travel","purple");
     }
 
 

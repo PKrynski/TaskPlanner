@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,6 +58,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        CategoriesManager.setupDefaultCategories();
     }
 
     @Override
@@ -177,14 +177,8 @@ public class MainActivity extends AppCompatActivity
 
             String taskCategory = currentTask.getCategory();
 
-            CategoriesManager.addNewCategory("category","purple");  //TODO: remove line when categories are inetgrated
-
-            String color = CategoriesManager.getCategoryColor(taskCategory);
-
-            Log.d("COLOR:", color);
-
             //TODO: Set background color based on task category
-            itemView.setBackgroundResource(R.color.colorBlue200);
+            itemView = ItemBgColorManager.setBackgroundByCategory(itemView,taskCategory);
 
             return itemView;
         }
