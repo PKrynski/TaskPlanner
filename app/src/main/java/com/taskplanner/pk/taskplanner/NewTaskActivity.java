@@ -1,8 +1,7 @@
 package com.taskplanner.pk.taskplanner;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -58,11 +57,9 @@ public class NewTaskActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                Log.d("SPINNER:", parent.getItemIdAtPosition(position)+"");
                 ArrayList<String> categories = CategoriesManager.getCategoriesNames();
 
                 String selected_category = categories.get(position);
-                Log.d("SPINNER:", selected_category);
                 taskCategory = selected_category;
             }
 

@@ -10,22 +10,22 @@ public class ItemBgColorManager {
 
         switch (color){
             case "blue":
-                view.setBackgroundResource(R.color.colorBlue200);
+                view.setBackgroundResource(R.color.colorBlue100);
                 break;
             case "green":
-                view.setBackgroundResource(R.color.colorGreen200);
+                view.setBackgroundResource(R.color.colorGreen100);
                 break;
             case "red":
-                view.setBackgroundResource(R.color.colorRed200);
+                view.setBackgroundResource(R.color.colorRed100);
                 break;
             case "yellow":
-                view.setBackgroundResource(R.color.colorYellow200);
+                view.setBackgroundResource(R.color.colorYellow100);
                 break;
             case "purple":
-                view.setBackgroundResource(R.color.colorPurple200);
+                view.setBackgroundResource(R.color.colorPurple100);
                 break;
             case "orange":
-                view.setBackgroundResource(R.color.colorOrange200);
+                view.setBackgroundResource(R.color.colorOrange100);
                 break;
             default:
                 break;
