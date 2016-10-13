@@ -28,6 +28,7 @@ public class ItemBgColorManager {
                 view.setBackgroundResource(R.color.colorOrange100);
                 break;
             default:
+                view.setBackgroundResource(R.color.colorGray100);
                 break;
         }
 
