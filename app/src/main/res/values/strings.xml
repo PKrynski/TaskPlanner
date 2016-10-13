@@ -19,5 +19,6 @@
         <item>Sport</item>
         <item>Travel</item>
     </string-array>
-    <string name="title_activity_list_all_categories">ListAllCategoriesActivity</string>
+    <string name="title_activity_new_task">New Task</string>
+    <string name="title_activity_list_all_categories">Categories</string>
 </resources>
