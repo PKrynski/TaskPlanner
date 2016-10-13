@@ -19,4 +19,5 @@
         <item>Sport</item>
         <item>Travel</item>
     </string-array>
+    <string name="title_activity_list_all_categories">ListAllCategoriesActivity</string>
 </resources>

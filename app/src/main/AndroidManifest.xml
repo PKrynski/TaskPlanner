@@ -21,6 +21,11 @@
         <activity android:name=".NewTaskActivity"/>
         <activity android:name=".DisplayTaskDetailsActivity">
         </activity>
+        <activity
+            android:name=".ListAllCategoriesActivity"
+            android:label="@string/title_activity_list_all_categories"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

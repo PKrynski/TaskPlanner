@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_newtask) {
             runNewTaskActivity();
         } else if (id == R.id.nav_categories) {
-
+            runListAllCategoriesActivity();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -149,6 +149,11 @@ public class MainActivity extends AppCompatActivity
     public void displayTaskDetails(int id) {
         Intent intent = new Intent(this, DisplayTaskDetailsActivity.class);
         intent.putExtra("taskID",id);
+        startActivity(intent);
+    }
+
+    public void runListAllCategoriesActivity() {
+        Intent intent = new Intent(this, ListAllCategoriesActivity.class);
         startActivity(intent);
     }
 
