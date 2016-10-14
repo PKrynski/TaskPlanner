@@ -12,6 +12,10 @@ public class CategoriesManager {
         categoriesArrayList.add(my_category);
     }
 
+    public static ArrayList<Category> getMyCategories() {
+        return categoriesArrayList;
+    }
+
     public static ArrayList<String> getCategoriesNames() {
 
         ArrayList<String> categoriesNames = new ArrayList<>();

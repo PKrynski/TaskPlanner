@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity
 
     public void loadAllTasks() {
 
-        ArrayAdapter<Task> adapter = new myListAdapter();
+        ArrayAdapter<Task> adapter = new myTasksListAdapter();
 
         ListView list = (ListView) findViewById(R.id.tasksListView);
         list.setAdapter(adapter);
@@ -157,9 +157,9 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    private class myListAdapter extends ArrayAdapter<Task> {
+    private class myTasksListAdapter extends ArrayAdapter<Task> {
 
-        public myListAdapter() {
+        public myTasksListAdapter() {
             super(MainActivity.this, R.layout.task_item_view, myTasks);
         }
 
@@ -182,7 +182,6 @@ public class MainActivity extends AppCompatActivity
 
             String taskCategory = currentTask.getCategory();
 
-            //TODO: Set background color based on task category
             itemView = ItemBgColorManager.setBackgroundByCategory(itemView,taskCategory);
 
             return itemView;
