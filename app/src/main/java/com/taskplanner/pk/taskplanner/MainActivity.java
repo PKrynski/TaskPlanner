@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
             runNewTaskActivity();
         } else if (id == R.id.nav_categories) {
             runListAllCategoriesActivity();
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_completed) {
 
         } else if (id == R.id.nav_manage) {
 

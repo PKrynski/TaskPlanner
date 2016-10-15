@@ -4,16 +4,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_newtask"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_add_black_24dp"
             android:title="@string/new_task" />
         <item
             android:id="@+id/nav_categories"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_view_headline_black_24dp"
             android:title="@string/categories" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:icon="@drawable/ic_check_circle_black_24dp"
+            android:title="Completed tasks"
+            android:id="@+id/nav_completed"/>
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
