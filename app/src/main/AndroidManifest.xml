@@ -28,7 +28,9 @@
             android:label="@string/title_activity_list_all_categories"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".NewCategoryActivity">
+        <activity
+            android:name=".NewCategoryActivity"
+            android:label="@string/title_activity_new_category">
         </activity>
     </application>
 

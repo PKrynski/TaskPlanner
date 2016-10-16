@@ -33,4 +33,5 @@
 
     <string name="title_activity_new_task">New Task</string>
     <string name="title_activity_list_all_categories">Categories</string>
+    <string name="title_activity_new_category">New Category</string>
 </resources>

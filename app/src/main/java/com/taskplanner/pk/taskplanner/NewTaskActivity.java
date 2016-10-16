@@ -49,7 +49,7 @@ public class NewTaskActivity extends AppCompatActivity {
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerCategorySelect);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.categories_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CategoriesManager.getCategoriesNames());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
