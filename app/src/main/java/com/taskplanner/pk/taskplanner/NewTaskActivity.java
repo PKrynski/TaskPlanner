@@ -25,7 +25,7 @@ public class NewTaskActivity extends AppCompatActivity {
 
     public void createNewTask(View view) {
 
-        EditText editTextName = (EditText) findViewById(R.id.editTextTaskName);
+        EditText editTextName = (EditText) findViewById(R.id.editTextCategoryName);
         String taskName = editTextName.getText().toString();
 
         EditText editTextDescription = (EditText) findViewById(R.id.editTextTaskDescription);
@@ -38,8 +38,8 @@ public class NewTaskActivity extends AppCompatActivity {
             Task newTask = new Task(taskName, taskDescription, taskCategory);
             TasksDB.addNewTask(newTask);
 
-            String toastmessage = "New task '" + taskName + "' created!";
-            Toast.makeText(this, toastmessage, Toast.LENGTH_LONG).show();
+            String message = "New task '" + taskName + "' created!";
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             finish();
         }
 

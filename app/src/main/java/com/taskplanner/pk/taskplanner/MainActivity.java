@@ -18,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        //Toast.makeText(this, "onResume called - tasks loaded",Toast.LENGTH_LONG).show();
         loadAllTasks();
         registerClicks();
     }
@@ -127,8 +125,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void registerClicks() {
-
-        Toast.makeText(MainActivity.this, "registerClicks running", Toast.LENGTH_LONG);
 
         ListView list = (ListView) findViewById(R.id.tasksListView);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

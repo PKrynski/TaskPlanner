@@ -1,9 +1,9 @@
 package com.taskplanner.pk.taskplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -29,8 +29,7 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                runNewCategoryActivity();
             }
         });
 
@@ -71,6 +70,11 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
 
             return itemView;
         }
+    }
+
+    public void runNewCategoryActivity() {
+        Intent intent = new Intent(this, NewCategoryActivity.class);
+        startActivity(intent);
     }
 
 }
