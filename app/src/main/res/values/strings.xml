@@ -14,13 +14,12 @@
     <string name="select_category">Select category:</string>
     <string name="create">Create</string>
 
-    <string-array name="categories_array">
-        <item>Uncategorized</item>
-        <item>Home</item>
-        <item>Work</item>
-        <item>Sport</item>
-        <item>Travel</item>
-    </string-array>
+    <string name="uncategorized">Uncategorized</string>
+    <string name="home">Home</string>
+    <string name="work">Work</string>
+    <string name="sport">Sport</string>
+    <string name="travel">Travel</string>
+
     <string-array name="colors_array">
         <item>blue</item>
         <item>red</item>

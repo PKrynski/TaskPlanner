@@ -39,13 +39,4 @@ public class CategoriesManager {
         return "default";
     }
 
-    public static void setupDefaultCategories() {
-
-        addNewCategory("Uncategorized", "default");
-        addNewCategory("Home", "orange");
-        addNewCategory("Work", "blue");
-        addNewCategory("Sport","green");
-        addNewCategory("Travel","purple");
-    }
-
 }
