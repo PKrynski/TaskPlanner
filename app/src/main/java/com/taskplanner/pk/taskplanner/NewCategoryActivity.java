@@ -46,7 +46,7 @@ public class NewCategoryActivity extends AppCompatActivity {
 
     public void makeColorSpinner() {
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerColorSelect);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinnerColorSelect);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.colors_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -56,7 +56,13 @@ public class NewCategoryActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                categoryColor = colors.get(position);
+                String picked_color = colors.get(position);
+
+                categoryColor = picked_color;
+
+                View colorView = findViewById(R.id.LinearLayoutColor);
+                colorView = ItemBgColorManager.setBackgroundByColorName(colorView, picked_color);
+                colorView.invalidate();
             }
 
             @Override
