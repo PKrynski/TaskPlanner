@@ -8,6 +8,13 @@ public class ItemBgColorManager {
 
         String color = CategoriesManager.getCategoryColor(category);
 
+        view = setBackgroundByColorName(view, color);
+
+        return view;
+    }
+
+    public static View setBackgroundByColorName(View view, String color) {
+
         switch (color){
             case "blue":
                 view.setBackgroundResource(R.color.colorBlue100);
