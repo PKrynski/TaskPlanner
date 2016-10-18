@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">TaskPlanner</string>
 
+    <string name="title_activity_new_task">New Task</string>
+    <string name="title_activity_list_all_categories">Categories</string>
+    <string name="title_activity_new_category">New Category</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -30,7 +34,7 @@
         <item>gray</item>
     </string-array>
 
-    <string name="title_activity_new_task">New Task</string>
-    <string name="title_activity_list_all_categories">Categories</string>
-    <string name="title_activity_new_category">New Category</string>
+    <string name="enter_new_category_name">Enter new category name:</string>
+    <string name="category_name">Category name</string>
+    <string name="select_category_color">Select category color:</string>
 </resources>

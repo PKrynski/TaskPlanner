@@ -15,7 +15,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:id="@+id/tasksListView"
-        android:layout_below="@+id/all_categories_text" />
+        android:layout_below="@+id/all_categories_text"
+        android:animateLayoutChanges="true"/>
 
     <TextView
         android:layout_width="wrap_content"

@@ -2,6 +2,7 @@ package com.taskplanner.pk.taskplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ArrayList<Task> myTasks = TasksDB.getMyTasks();
+    ArrayAdapter<Task> adapter;
 
     @Override
     protected void onResume() {
@@ -122,13 +126,13 @@ public class MainActivity extends AppCompatActivity
         CategoriesManager.addNewCategory(getString(R.string.uncategorized), "default");
         CategoriesManager.addNewCategory(getString(R.string.home), "orange");
         CategoriesManager.addNewCategory(getString(R.string.work), "blue");
-        CategoriesManager.addNewCategory(getString(R.string.sport),"green");
-        CategoriesManager.addNewCategory(getString(R.string.travel),"purple");
+        CategoriesManager.addNewCategory(getString(R.string.sport), "green");
+        CategoriesManager.addNewCategory(getString(R.string.travel), "purple");
     }
 
     public void loadAllTasks() {
 
-        ArrayAdapter<Task> adapter = new myTasksListAdapter();
+        adapter = new myTasksListAdapter();
 
         ListView list = (ListView) findViewById(R.id.tasksListView);
         list.setAdapter(adapter);
@@ -136,12 +140,30 @@ public class MainActivity extends AppCompatActivity
 
     private void registerClicks() {
 
-        ListView list = (ListView) findViewById(R.id.tasksListView);
+        final ListView list = (ListView) findViewById(R.id.tasksListView);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
 
-                displayTaskDetails(position);
+                //displayTaskDetails(position);                     //TODO: revert to display details, extract code below to completed task
+                final Task currentTask = myTasks.get(position);
+                //myTasks.remove(currentTask);                      //TODO: remove
+                //adapter.notifyDataSetChanged();                   //TODO: remove
+
+                Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_right); //android.R.anim.slide_out_right
+                //anim.setDuration(500);
+                list.getChildAt(position).startAnimation(anim);
+
+                new Handler().postDelayed(new Runnable() {
+
+                    public void run() {
+
+                        myTasks.remove(currentTask);
+                        adapter.notifyDataSetChanged();
+
+                    }
+
+                }, anim.getDuration());
             }
         });
 
@@ -154,7 +176,7 @@ public class MainActivity extends AppCompatActivity
 
     public void displayTaskDetails(int id) {
         Intent intent = new Intent(this, DisplayTaskDetailsActivity.class);
-        intent.putExtra("taskID",id);
+        intent.putExtra("taskID", id);
         startActivity(intent);
     }
 
@@ -174,7 +196,7 @@ public class MainActivity extends AppCompatActivity
         public View getView(int position, View convertView, ViewGroup parent) {
 
             View itemView = convertView;
-            if(itemView == null) {
+            if (itemView == null) {
                 itemView = getLayoutInflater().inflate(R.layout.task_item_view, parent, false);
             }
 
@@ -188,7 +210,7 @@ public class MainActivity extends AppCompatActivity
 
             String taskCategory = currentTask.getCategory();
 
-            itemView = ItemBgColorManager.setBackgroundByCategory(itemView,taskCategory);
+            itemView = ItemBgColorManager.setBackgroundByCategory(itemView, taskCategory);
 
             return itemView;
         }
