@@ -2,7 +2,6 @@ package com.taskplanner.pk.taskplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -22,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -165,25 +165,32 @@ public class MainActivity extends AppCompatActivity
 
                 final Task currentTask = myTasks.get(position);
 
-                CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox_completed);
-                boolean checked = checkBox.isChecked();
+                boolean complete = currentTask.isCompleted();
 
-                if (checked) {
+                if (complete) {
 
-                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_right); //android.R.anim.slide_out_right
-                    //anim.setDuration(500);
-                    list.getChildAt(position).startAnimation(anim);
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_right);
 
-                    new Handler().postDelayed(new Runnable() {
-
-                        public void run() {
-
-                            myTasks.remove(currentTask);
-                            adapter.notifyDataSetChanged();
+                    anim.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
 
                         }
 
-                    }, anim.getDuration());
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            myTasks.remove(currentTask);
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+                    list.getChildAt(position).startAnimation(anim);
+
                 } else {
                     displayTaskDetails(position);
                 }
@@ -217,6 +224,14 @@ public class MainActivity extends AppCompatActivity
 
             String taskCategory = currentTask.getCategory();
 
+            CheckBox checkBox = (CheckBox) itemView.findViewById(R.id.checkBox_completed);
+            if (currentTask.isCompleted()) {
+                checkBox.setChecked(true);
+            } else {
+                checkBox.setChecked(false);
+                itemView.jumpDrawablesToCurrentState();
+            }
+
             itemView = ItemBgColorManager.setBackgroundByCategory(itemView, taskCategory);
 
             return itemView;
@@ -225,16 +240,27 @@ public class MainActivity extends AppCompatActivity
 
     public void markTaskAsCompleted(View view) {
 
+        RelativeLayout relativeLayout = (RelativeLayout) view.getParent();
+
+        ListView listView = (ListView) findViewById(R.id.tasksListView);
+
+        int index = listView.indexOfChild(relativeLayout);
+
+        Task currentTask = myTasks.get(index);
+
         boolean checked = ((CheckBox) view).isChecked();
 
         String message;
 
         if (checked) {
-            message = "Task marked as completed.\nClick task to remove it from the list.";
+            currentTask.setAsCompleted();
+            message = "Task marked as completed.\nTap task to remove it from the list.";
         } else {
+            currentTask.setAsIncomplete();
             message = "Task marked as incomplete.";
         }
 
         Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
     }
+
 }

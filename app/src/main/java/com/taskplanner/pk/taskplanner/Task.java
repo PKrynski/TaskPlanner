@@ -14,8 +14,12 @@ public class Task {
         this.completed = false;
     }
 
-    public void markAsCompleted() {
+    public void setAsCompleted() {
         this.completed = true;
+    }
+
+    public void setAsIncomplete() {
+        this.completed = false;
     }
 
     public String getName() {
