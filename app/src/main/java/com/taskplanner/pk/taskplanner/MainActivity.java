@@ -19,8 +19,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -138,37 +140,6 @@ public class MainActivity extends AppCompatActivity
         list.setAdapter(adapter);
     }
 
-    private void registerClicks() {
-
-        final ListView list = (ListView) findViewById(R.id.tasksListView);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
-
-                //displayTaskDetails(position);                     //TODO: revert to display details, extract code below to completed task
-                final Task currentTask = myTasks.get(position);
-                //myTasks.remove(currentTask);                      //TODO: remove
-                //adapter.notifyDataSetChanged();                   //TODO: remove
-
-                Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_right); //android.R.anim.slide_out_right
-                //anim.setDuration(500);
-                list.getChildAt(position).startAnimation(anim);
-
-                new Handler().postDelayed(new Runnable() {
-
-                    public void run() {
-
-                        myTasks.remove(currentTask);
-                        adapter.notifyDataSetChanged();
-
-                    }
-
-                }, anim.getDuration());
-            }
-        });
-
-    }
-
     public void runNewTaskActivity() {
         Intent intent = new Intent(this, NewTaskActivity.class);
         startActivity(intent);
@@ -183,6 +154,42 @@ public class MainActivity extends AppCompatActivity
     public void runListAllCategoriesActivity() {
         Intent intent = new Intent(this, ListAllCategoriesActivity.class);
         startActivity(intent);
+    }
+
+    private void registerClicks() {
+
+        final ListView list = (ListView) findViewById(R.id.tasksListView);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+
+                final Task currentTask = myTasks.get(position);
+
+                CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox_completed);
+                boolean checked = checkBox.isChecked();
+
+                if (checked) {
+
+                    Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_right); //android.R.anim.slide_out_right
+                    //anim.setDuration(500);
+                    list.getChildAt(position).startAnimation(anim);
+
+                    new Handler().postDelayed(new Runnable() {
+
+                        public void run() {
+
+                            myTasks.remove(currentTask);
+                            adapter.notifyDataSetChanged();
+
+                        }
+
+                    }, anim.getDuration());
+                } else {
+                    displayTaskDetails(position);
+                }
+            }
+        });
+
     }
 
     private class myTasksListAdapter extends ArrayAdapter<Task> {
@@ -214,5 +221,11 @@ public class MainActivity extends AppCompatActivity
 
             return itemView;
         }
+    }
+
+    public void markTaskAsCompleted(View view) {
+
+        Toast.makeText(this, "Checkbox clicked", Toast.LENGTH_SHORT).show();
+
     }
 }
