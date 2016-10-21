@@ -47,7 +47,7 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
     private class myCategoriesListAdapter extends ArrayAdapter<Category> {
 
         public myCategoriesListAdapter() {
-            super(ListAllCategoriesActivity.this, R.layout.task_item_view, myCategories);
+            super(ListAllCategoriesActivity.this, R.layout.category_item_view, myCategories);
         }
 
         @NonNull
@@ -56,14 +56,14 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
 
             View itemView = convertView;
             if(itemView == null) {
-                itemView = getLayoutInflater().inflate(R.layout.task_item_view, parent, false);
+                itemView = getLayoutInflater().inflate(R.layout.category_item_view, parent, false);
             }
 
             Category currentCategory = myCategories.get(position);
 
             String categoryName = currentCategory.getName();
 
-            TextView nameTextView = (TextView) itemView.findViewById(R.id.item_textView_task_name);
+            TextView nameTextView = (TextView) itemView.findViewById(R.id.item_textView_category_name);
             nameTextView.setText(currentCategory.getName());
 
             itemView = ItemBgColorManager.setBackgroundByCategory(itemView, categoryName);

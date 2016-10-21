@@ -37,4 +37,8 @@
     <string name="enter_new_category_name">Enter new category name:</string>
     <string name="category_name">Category name</string>
     <string name="select_category_color">Select category color:</string>
+    <string name="to_do">To do:</string>
+    <string name="task_name">Task Name</string>
+    <string name="all_categories">All categories:</string>
+    <string name="category">Category</string>
 </resources>
