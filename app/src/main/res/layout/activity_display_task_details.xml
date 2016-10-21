@@ -23,15 +23,28 @@
             android:layout_alignParentTop="true"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/displayTaskNameTextView"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="16dp"
-                android:text="TextView"
-                android:textAllCaps="false"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                android:textStyle="normal|bold"/>
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/displayTaskNameTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:text="Task Name"
+                    android:textAllCaps="false"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                    android:textStyle="normal|bold"
+                    android:layout_weight="1"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/checkBox_details_iscomplete"
+                    android:onClick="changeTaskStatus"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/displayTaskCategoryTextView"

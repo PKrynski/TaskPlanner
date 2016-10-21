@@ -14,7 +14,7 @@ public class Task {
         this.completed = false;
     }
 
-    public void setAsCompleted() {
+    public void setAsComplete() {
         this.completed = true;
     }
 
