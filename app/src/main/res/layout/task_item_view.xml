@@ -11,11 +11,11 @@
         android:layout_marginStart="20dp"
         android:paddingBottom="30dp"
         android:id="@+id/item_textView_task_name"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp"
-        android:layout_toStartOf="@+id/checkBox_completed"/>
+        android:layout_toStartOf="@+id/checkBox_completed"
+        android:textSize="18sp"/>
 
     <CheckBox
         android:layout_width="wrap_content"

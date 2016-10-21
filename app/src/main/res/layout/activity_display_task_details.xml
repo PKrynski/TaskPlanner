@@ -34,10 +34,9 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="16dp"
                     android:text="Task Name"
-                    android:textAllCaps="false"
-                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                    android:textStyle="normal|bold"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textStyle="normal|bold"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -50,7 +49,7 @@
                 android:id="@+id/displayTaskCategoryTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Category"
+                android:text="@string/category"
                 android:textAlignment="textEnd"
                 android:textStyle="normal|italic"/>
 
