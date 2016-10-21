@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity
         String message;
 
         if (checked) {
-            currentTask.setAsCompleted();
+            currentTask.setAsComplete();
             message = "Task marked as completed.\nTap task to remove it from the list.";
         } else {
             currentTask.setAsIncomplete();
