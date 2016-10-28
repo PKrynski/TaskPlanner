@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity
             sidebar.startAnimation(anim);
 
             currentTask.setAsComplete();
-            message = "Task marked as completed.\nTap task to remove it from the list.";
+            message = "Task marked as complete.\nTap task to remove it from the list.";
         } else {
             Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_out_right);
             anim.setAnimationListener(new Animation.AnimationListener() {

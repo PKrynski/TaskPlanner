@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Task name here"
+        android:text="@string/task_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -28,12 +26,10 @@
         android:layout_alignBaseline="@+id/item_textView_task_name"
         android:layout_alignBottom="@+id/item_textView_task_name"
         android:layout_alignParentEnd="true"
-        android:onClick="markTaskAsCompleted"
-        android:textColorLink="?attr/colorAccent"
-        />
+        android:onClick="markTaskAsCompleted"/>
 
     <TextView
-        android:text="Category"
+        android:text="@string/category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
