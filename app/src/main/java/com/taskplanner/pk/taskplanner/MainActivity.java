@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity
 
         RelativeLayout relativeLayout = (RelativeLayout) view.getParent();
 
-        final View sidebar = relativeLayout.findViewById(R.id.right_sidebar);
+        View sidebar = relativeLayout.findViewById(R.id.right_sidebar);
 
         ListView listView = (ListView) findViewById(R.id.tasksListView);
 
@@ -259,37 +259,48 @@ public class MainActivity extends AppCompatActivity
         String message;
 
         if (checked) {
-            sidebar.setBackgroundResource(R.color.colorGreen400);
-            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_in_from_left);
-            sidebar.startAnimation(anim);
+            activateSidebar(sidebar);
 
             currentTask.setAsComplete();
             message = "Task marked as complete.\nTap task to remove it from the list.";
         } else {
-            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_out_right);
-            anim.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    sidebar.setBackgroundResource(0);
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
-            sidebar.startAnimation(anim);
+            deactivateSidebar(sidebar);
 
             currentTask.setAsIncomplete();
             message = "Task marked as incomplete.";
         }
 
         Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+    }
+
+    private void activateSidebar(View sidebar) {
+
+        sidebar.setBackgroundResource(R.color.colorGreen400);
+        Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_in_from_left);
+        sidebar.startAnimation(anim);
+    }
+
+    private void deactivateSidebar(final View sidebar) {
+
+        Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_out_right);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                sidebar.setBackgroundResource(0);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        sidebar.startAnimation(anim);
+
     }
 
 }
