@@ -242,6 +242,8 @@ public class MainActivity extends AppCompatActivity
 
         RelativeLayout relativeLayout = (RelativeLayout) view.getParent();
 
+        final View sidebar = relativeLayout.findViewById(R.id.right_bar_space);
+
         ListView listView = (ListView) findViewById(R.id.tasksListView);
 
         int index = listView.indexOfChild(relativeLayout);
@@ -253,9 +255,32 @@ public class MainActivity extends AppCompatActivity
         String message;
 
         if (checked) {
+            sidebar.setBackgroundResource(R.color.colorGreen400);
+            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_in_from_left);
+            sidebar.startAnimation(anim);
+
             currentTask.setAsComplete();
             message = "Task marked as completed.\nTap task to remove it from the list.";
         } else {
+            Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_out_right);
+            anim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    sidebar.setBackgroundResource(0);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            sidebar.startAnimation(anim);
+
             currentTask.setAsIncomplete();
             message = "Task marked as incomplete.";
         }
