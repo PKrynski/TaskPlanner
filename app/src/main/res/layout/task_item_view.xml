@@ -49,7 +49,7 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/right_bar_space"
+        android:id="@+id/right_sidebar"
         android:layout_alignBottom="@+id/item_textView_task_name"
         />
 </RelativeLayout>

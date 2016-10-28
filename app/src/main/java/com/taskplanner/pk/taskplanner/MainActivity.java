@@ -225,10 +225,14 @@ public class MainActivity extends AppCompatActivity
             String taskCategory = currentTask.getCategory();
 
             CheckBox checkBox = (CheckBox) itemView.findViewById(R.id.checkBox_completed);
+            View sidebar = itemView.findViewById(R.id.right_sidebar);
+
             if (currentTask.isCompleted()) {
                 checkBox.setChecked(true);
+                sidebar.setBackgroundResource(R.color.colorGreen400);
             } else {
                 checkBox.setChecked(false);
+                sidebar.setBackgroundResource(0);
                 itemView.jumpDrawablesToCurrentState();
             }
 
@@ -242,7 +246,7 @@ public class MainActivity extends AppCompatActivity
 
         RelativeLayout relativeLayout = (RelativeLayout) view.getParent();
 
-        final View sidebar = relativeLayout.findViewById(R.id.right_bar_space);
+        final View sidebar = relativeLayout.findViewById(R.id.right_sidebar);
 
         ListView listView = (ListView) findViewById(R.id.tasksListView);
 
