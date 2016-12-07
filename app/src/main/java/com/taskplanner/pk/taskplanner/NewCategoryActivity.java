@@ -1,5 +1,6 @@
 package com.taskplanner.pk.taskplanner;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,6 +43,7 @@ public class NewCategoryActivity extends AppCompatActivity {
 
             String message = "New category '" + categoryName + "' created!";
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            saveCategoriesInSharedPreferences();
             finish();
         }
 
@@ -70,5 +75,20 @@ public class NewCategoryActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void saveCategoriesInSharedPreferences() {
+
+        ArrayList<Category> myCategories = CategoriesManager.getMyCategories();
+
+        SharedPreferences prefs = getSharedPreferences("CategoriesPrefs", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new Gson();
+        String categories = gson.toJson(myCategories);
+
+        editor.putString("categories", categories);
+        editor.apply();
     }
 }
