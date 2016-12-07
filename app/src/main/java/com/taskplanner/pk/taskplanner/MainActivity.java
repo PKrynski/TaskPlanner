@@ -159,9 +159,10 @@ public class MainActivity extends AppCompatActivity
     private void registerClicks() {
 
         final ListView list = (ListView) findViewById(R.id.tasksListView);
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, final View viewClicked, final int position, long id) {
 
                 final Task currentTask = myTasks.get(position);
 
@@ -276,7 +277,7 @@ public class MainActivity extends AppCompatActivity
     private void activateSidebar(View sidebar) {
 
         sidebar.setBackgroundResource(R.color.colorGreen400);
-        Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_in_from_left);
+        Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.slide_in_left);
         sidebar.startAnimation(anim);
     }
 

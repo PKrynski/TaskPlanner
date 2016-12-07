@@ -1,6 +1,7 @@
 package com.taskplanner.pk.taskplanner;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -12,11 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ListAllCategoriesActivity extends AppCompatActivity {
 
     ArrayList<Category> myCategories = CategoriesManager.getMyCategories();
+    ArrayList<Category> currentCategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +39,21 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
             }
         });
 
+        //loadAllCategories();
+        getCategoriesFromSharedPreferences();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         loadAllCategories();
+        //saveCategoriesToSharedPreferences();
     }
 
     public void loadAllCategories() {
+
+        currentCategories = getCategoriesFromSharedPreferences();
 
         ArrayAdapter<Category> adapter = new myCategoriesListAdapter();
 
@@ -47,7 +64,7 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
     private class myCategoriesListAdapter extends ArrayAdapter<Category> {
 
         public myCategoriesListAdapter() {
-            super(ListAllCategoriesActivity.this, R.layout.category_item_view, myCategories);
+            super(ListAllCategoriesActivity.this, R.layout.category_item_view, currentCategories);
         }
 
         @NonNull
@@ -59,7 +76,7 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
                 itemView = getLayoutInflater().inflate(R.layout.category_item_view, parent, false);
             }
 
-            Category currentCategory = myCategories.get(position);
+            Category currentCategory = currentCategories.get(position);
 
             String categoryName = currentCategory.getName();
 
@@ -75,6 +92,22 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
     public void runNewCategoryActivity() {
         Intent intent = new Intent(this, NewCategoryActivity.class);
         startActivity(intent);
+    }
+
+    private ArrayList<Category> getCategoriesFromSharedPreferences() {
+
+        SharedPreferences prefs = getSharedPreferences("CategoriesPrefs", MODE_PRIVATE);
+        String categories = prefs.getString("categories", "None");
+
+        if (!"None".equals(categories)) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<Category>>(){}.getType();
+            ArrayList<Category> readCategories = gson.fromJson(categories, type);
+            CategoriesManager.setMyCategories(readCategories);
+
+            return readCategories;
+        }
+        return myCategories;
     }
 
 }

@@ -16,6 +16,10 @@ public class CategoriesManager {
         return categoriesArrayList;
     }
 
+    public static void setMyCategories(ArrayList<Category> modifiedCategories) {
+        categoriesArrayList = modifiedCategories;
+    }
+
     public static ArrayList<String> getCategoriesNames() {
 
         ArrayList<String> categoriesNames = new ArrayList<>();

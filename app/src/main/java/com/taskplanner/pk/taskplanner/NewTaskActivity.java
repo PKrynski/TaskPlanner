@@ -38,8 +38,8 @@ public class NewTaskActivity extends AppCompatActivity {
             Task newTask = new Task(taskName, taskDescription, taskCategory);
             TasksDB.addNewTask(newTask);
 
-            String message = "New task '" + taskName + "' created!";
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            //String message = "New task '" + taskName + "' created!";
+            //Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             finish();
         }
 
