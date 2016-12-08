@@ -1,5 +1,6 @@
 package com.taskplanner.pk.taskplanner;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,7 @@ public class NewTaskActivity extends AppCompatActivity {
 
             //String message = "New task '" + taskName + "' created!";
             //Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            saveTasksInSharedPreferences();
             finish();
         }
 
@@ -68,5 +72,21 @@ public class NewTaskActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void saveTasksInSharedPreferences() {
+
+        ArrayList<Task> myTasks = TasksDB.getMyTasks();
+
+        SharedPreferences prefs = getSharedPreferences("TasksPrefs", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new Gson();
+        String categories = gson.toJson(myTasks);
+
+        editor.putString("tasks", categories);
+        editor.apply();
+        Toast.makeText(this, "TASKS SAVED", Toast.LENGTH_LONG).show();
     }
 }
