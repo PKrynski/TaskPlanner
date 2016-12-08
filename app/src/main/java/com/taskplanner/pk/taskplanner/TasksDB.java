@@ -13,4 +13,8 @@ public class TasksDB {
     public static ArrayList<Task> getMyTasks() {
         return myTasks;
     }
+
+    public static void setMyTasks(ArrayList<Task> modifiedTasks) {
+        myTasks = modifiedTasks;
+    }
 }

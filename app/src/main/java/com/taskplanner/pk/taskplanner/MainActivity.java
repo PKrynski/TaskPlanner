@@ -1,6 +1,7 @@
 package com.taskplanner.pk.taskplanner;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -24,12 +25,17 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ArrayList<Task> myTasks = TasksDB.getMyTasks();
+    ArrayList<Task> currentTasks;
     ArrayAdapter<Task> adapter;
 
     @Override
@@ -134,10 +140,28 @@ public class MainActivity extends AppCompatActivity
 
     public void loadAllTasks() {
 
+        currentTasks = getTasksFromSharedPreferences();
+
         adapter = new myTasksListAdapter();
 
         ListView list = (ListView) findViewById(R.id.tasksListView);
         list.setAdapter(adapter);
+    }
+
+    private ArrayList<Task> getTasksFromSharedPreferences() {
+
+        SharedPreferences prefs = getSharedPreferences("TasksPrefs", MODE_PRIVATE);
+        String categories = prefs.getString("tasks", "None");
+
+        if (!"None".equals(categories)) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<Task>>(){}.getType();
+            ArrayList<Task> readTasks = gson.fromJson(categories, type);
+            TasksDB.setMyTasks(readTasks);
+
+            return readTasks;
+        }
+        return myTasks;
     }
 
     public void runNewTaskActivity() {
@@ -203,7 +227,7 @@ public class MainActivity extends AppCompatActivity
     private class myTasksListAdapter extends ArrayAdapter<Task> {
 
         public myTasksListAdapter() {
-            super(MainActivity.this, R.layout.task_item_view, myTasks);
+            super(MainActivity.this, R.layout.task_item_view, currentTasks);
         }
 
         @NonNull
@@ -215,7 +239,7 @@ public class MainActivity extends AppCompatActivity
                 itemView = getLayoutInflater().inflate(R.layout.task_item_view, parent, false);
             }
 
-            Task currentTask = myTasks.get(position);
+            Task currentTask = currentTasks.get(position);
 
             TextView nameTextView = (TextView) itemView.findViewById(R.id.item_textView_task_name);
             nameTextView.setText(currentTask.getName());
@@ -253,7 +277,7 @@ public class MainActivity extends AppCompatActivity
 
         int index = listView.indexOfChild(relativeLayout);
 
-        Task currentTask = myTasks.get(index);
+        Task currentTask = currentTasks.get(index);
 
         boolean checked = ((CheckBox) view).isChecked();
 
