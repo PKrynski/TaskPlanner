@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+
+        loadAllCategories();
         loadAllTasks();
         registerClicks();
     }
@@ -162,6 +164,19 @@ public class MainActivity extends AppCompatActivity
             return readTasks;
         }
         return myTasks;
+    }
+
+    private void loadAllCategories() {
+
+        SharedPreferences prefs = getSharedPreferences("CategoriesPrefs", MODE_PRIVATE);
+        String categories = prefs.getString("categories", "None");
+
+        if (!"None".equals(categories)) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<Category>>(){}.getType();
+            ArrayList<Category> readCategories = gson.fromJson(categories, type);
+            CategoriesManager.setMyCategories(readCategories);
+        }
     }
 
     public void runNewTaskActivity() {
