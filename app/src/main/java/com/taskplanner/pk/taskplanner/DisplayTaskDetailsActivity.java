@@ -1,12 +1,15 @@
 package com.taskplanner.pk.taskplanner;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -56,6 +59,21 @@ public class DisplayTaskDetailsActivity extends AppCompatActivity {
         }
 
         Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+        updateTasksInSharedPreferences();
+    }
 
+    private void updateTasksInSharedPreferences() {
+
+        ArrayList<Task> myTasks = TasksDB.getMyTasks();
+
+        SharedPreferences prefs = getSharedPreferences("TasksPrefs", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new Gson();
+        String tasks = gson.toJson(myTasks);
+
+        editor.putString("tasks", tasks);
+        editor.apply();
     }
 }
