@@ -83,10 +83,9 @@ public class NewTaskActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
 
         Gson gson = new Gson();
-        String categories = gson.toJson(myTasks);
+        String tasks = gson.toJson(myTasks);
 
-        editor.putString("tasks", categories);
+        editor.putString("tasks", tasks);
         editor.apply();
-        Toast.makeText(this, "TASKS SAVED", Toast.LENGTH_LONG).show();
     }
 }

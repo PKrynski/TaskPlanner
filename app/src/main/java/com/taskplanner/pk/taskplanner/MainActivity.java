@@ -39,11 +39,17 @@ public class MainActivity extends AppCompatActivity
     ArrayAdapter<Task> adapter;
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
 
         loadAllCategories();
         loadAllTasks();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         registerClicks();
     }
 
@@ -327,6 +333,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+        updateTasksInSharedPreferences();
     }
 
     private void activateSidebar(View sidebar) {

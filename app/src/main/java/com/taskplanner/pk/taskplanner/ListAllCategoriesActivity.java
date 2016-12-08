@@ -38,9 +38,6 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
                 runNewCategoryActivity();
             }
         });
-
-        //loadAllCategories();
-        getCategoriesFromSharedPreferences();
     }
 
     @Override
@@ -48,7 +45,6 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
         super.onResume();
 
         loadAllCategories();
-        //saveCategoriesToSharedPreferences();
     }
 
     public void loadAllCategories() {
