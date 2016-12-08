@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ArrayList<Task> myTasks = TasksDB.getMyTasks();
-    ArrayList<Task> currentTasks;
+    ArrayList<Task> allCurrentTasks;
     ArrayAdapter<Task> adapter;
 
     @Override
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity
 
     public void loadAllTasks() {
 
-        currentTasks = getTasksFromSharedPreferences();
+        allCurrentTasks = getTasksFromSharedPreferences();
 
         adapter = new myTasksListAdapter();
 
@@ -164,6 +164,21 @@ public class MainActivity extends AppCompatActivity
             return readTasks;
         }
         return myTasks;
+    }
+
+    private void updateTasksInSharedPreferences() {
+
+        ArrayList<Task> myTasks = TasksDB.getMyTasks();
+
+        SharedPreferences prefs = getSharedPreferences("TasksPrefs", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new Gson();
+        String tasks = gson.toJson(myTasks);
+
+        editor.putString("tasks", tasks);
+        editor.apply();
     }
 
     private void loadAllCategories() {
@@ -203,7 +218,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, final View viewClicked, final int position, long id) {
 
-                final Task currentTask = myTasks.get(position);
+                final Task currentTask = allCurrentTasks.get(position);
 
                 boolean complete = currentTask.isCompleted();
 
@@ -219,8 +234,9 @@ public class MainActivity extends AppCompatActivity
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            myTasks.remove(currentTask);
+                            allCurrentTasks.remove(currentTask);
                             adapter.notifyDataSetChanged();
+                            updateTasksInSharedPreferences();
                         }
 
                         @Override
@@ -242,7 +258,7 @@ public class MainActivity extends AppCompatActivity
     private class myTasksListAdapter extends ArrayAdapter<Task> {
 
         public myTasksListAdapter() {
-            super(MainActivity.this, R.layout.task_item_view, currentTasks);
+            super(MainActivity.this, R.layout.task_item_view, allCurrentTasks);
         }
 
         @NonNull
@@ -254,7 +270,7 @@ public class MainActivity extends AppCompatActivity
                 itemView = getLayoutInflater().inflate(R.layout.task_item_view, parent, false);
             }
 
-            Task currentTask = currentTasks.get(position);
+            Task currentTask = allCurrentTasks.get(position);
 
             TextView nameTextView = (TextView) itemView.findViewById(R.id.item_textView_task_name);
             nameTextView.setText(currentTask.getName());
@@ -292,7 +308,7 @@ public class MainActivity extends AppCompatActivity
 
         int index = listView.indexOfChild(relativeLayout);
 
-        Task currentTask = currentTasks.get(index);
+        Task currentTask = allCurrentTasks.get(index);
 
         boolean checked = ((CheckBox) view).isChecked();
 
