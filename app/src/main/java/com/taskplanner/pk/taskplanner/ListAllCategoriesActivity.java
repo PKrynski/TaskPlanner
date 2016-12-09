@@ -7,11 +7,18 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,8 +28,8 @@ import java.util.ArrayList;
 
 public class ListAllCategoriesActivity extends AppCompatActivity {
 
-    ArrayList<Category> myCategories = CategoriesManager.getMyCategories();
     ArrayList<Category> currentCategories;
+    ArrayAdapter<Category> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +52,48 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
         super.onResume();
 
         loadAllCategories();
+        registerCategoryItemClicks();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.categories_context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        int id = item.getItemId();
+
+        if( id == R.id.edit) {
+            Toast.makeText(this, "EDIT", Toast.LENGTH_SHORT).show(); //TODO: enable category edit
+            editCategory(info.position);
+            return true;
+        } else if( id == R.id.delete) {
+            deleteCategory(info.position);
+            return true;
+        } else {
+            return super.onContextItemSelected(item);
+        }
+    }
+
+    private void registerCategoryItemClicks() {
+
+        ListView list = (ListView) findViewById(R.id.categoriesListView);
+
+        registerForContextMenu(list);
     }
 
     public void loadAllCategories() {
 
         currentCategories = getCategoriesFromSharedPreferences();
 
-        ArrayAdapter<Category> adapter = new myCategoriesListAdapter();
+        adapter = new myCategoriesListAdapter();
 
         ListView list = (ListView) findViewById(R.id.categoriesListView);
         list.setAdapter(adapter);
@@ -103,7 +145,55 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
 
             return readCategories;
         }
-        return myCategories;
+        return CategoriesManager.getMyCategories();
+    }
+
+    private void editCategory(int position) {
+        //TODO: enable category edit
+    }
+
+    private void deleteCategory(int position) {
+
+        ListView list = (ListView) findViewById(R.id.categoriesListView);
+        final Category selectedCategory = currentCategories.get(position);
+
+        Animation anim = AnimationUtils.loadAnimation(ListAllCategoriesActivity.this, R.anim.move_right);
+
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                currentCategories.remove(selectedCategory);
+                adapter.notifyDataSetChanged();
+                saveCategoriesInSharedPreferences();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        list.getChildAt(position).startAnimation(anim);
+    }
+
+    private void saveCategoriesInSharedPreferences() {
+
+        ArrayList<Category> myCategories = CategoriesManager.getMyCategories();
+
+        SharedPreferences prefs = getSharedPreferences("CategoriesPrefs", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new Gson();
+        String categories = gson.toJson(myCategories);
+
+        editor.putString("categories", categories);
+        editor.apply();
     }
 
 }

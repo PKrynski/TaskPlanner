@@ -32,7 +32,9 @@
             android:name=".NewCategoryActivity"
             android:label="@string/title_activity_new_category">
         </activity>
-        <activity android:name=".EditTaskActivity">
+        <activity
+            android:name=".EditTaskActivity"
+            android:label="@string/title_activity_edit_task">
         </activity>
     </application>
 

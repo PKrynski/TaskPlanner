@@ -4,6 +4,7 @@
     <string name="title_activity_new_task">New Task</string>
     <string name="title_activity_list_all_categories">Categories</string>
     <string name="title_activity_new_category">New Category</string>
+    <string name="title_activity_edit_task">Edit Task</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -43,4 +44,5 @@
     <string name="category">Category</string>
     <string name="edit">Edit</string>
     <string name="description">Description</string>
+    <string name="delete">Delete</string>
 </resources>
