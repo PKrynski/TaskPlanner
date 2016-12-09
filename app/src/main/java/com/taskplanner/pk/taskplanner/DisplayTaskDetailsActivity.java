@@ -2,15 +2,14 @@ package com.taskplanner.pk.taskplanner;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -20,6 +19,7 @@ public class DisplayTaskDetailsActivity extends AppCompatActivity {
 
     ArrayList<Task> myTasks = TasksDB.getMyTasks();
     Task currentTask;
+    int taskID;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,7 +34,10 @@ public class DisplayTaskDetailsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if( id == R.id.action_edit) {
-            Toast.makeText(this, "Edit item selected.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, EditTaskActivity.class);
+            intent.putExtra("taskID", taskID);
+            startActivity(intent);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -46,7 +49,7 @@ public class DisplayTaskDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_task_details);
 
         Intent intent = getIntent();
-        int taskID = intent.getIntExtra("taskID",0);
+        taskID = intent.getIntExtra("taskID",0);
         displayDetails(taskID);
     }
 

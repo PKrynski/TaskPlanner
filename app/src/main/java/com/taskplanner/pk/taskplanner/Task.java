@@ -37,4 +37,10 @@ public class Task {
     public boolean isCompleted() {
         return completed;
     }
+
+    public void update(String newName, String newCategory, String newDescription) {
+        this.name = newName;
+        this.category = newCategory;
+        this.description = newDescription;
+    }
 }

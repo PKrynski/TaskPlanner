@@ -75,7 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/EnterTaskDescription_textView"
-            android:inputType="textMultiLine"/>
+            android:inputType="textMultiLine"
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/createButton"
