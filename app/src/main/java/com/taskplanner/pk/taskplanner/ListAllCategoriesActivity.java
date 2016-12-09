@@ -18,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -71,7 +70,6 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if( id == R.id.edit) {
-            Toast.makeText(this, "EDIT", Toast.LENGTH_SHORT).show(); //TODO: enable category edit
             editCategory(info.position);
             return true;
         } else if( id == R.id.delete) {
@@ -149,7 +147,9 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
     }
 
     private void editCategory(int position) {
-        //TODO: enable category edit
+        Intent intent = new Intent(this, EditCategoryActivity.class);
+        intent.putExtra("categoryPosition", position);
+        startActivity(intent);
     }
 
     private void deleteCategory(int position) {

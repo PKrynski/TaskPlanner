@@ -17,4 +17,8 @@ public class Category {
     public String getColor() {
         return color;
     }
+
+    public void update(String newColor) {
+        this.color = newColor;
+    }
 }
