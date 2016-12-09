@@ -34,7 +34,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ArrayList<Task> myTasks = TasksDB.getMyTasks();
     ArrayList<Task> allCurrentTasks;
     ArrayAdapter<Task> adapter;
 
@@ -51,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
 
         registerClicks();
+        updateHeader();
     }
 
     @Override
@@ -156,6 +156,44 @@ public class MainActivity extends AppCompatActivity
         list.setAdapter(adapter);
     }
 
+    private void updateHeader() {
+
+        final TextView listHeader = (TextView) findViewById(R.id.list_header_text);
+
+        String toDo = getResources().getString(R.string.to_do);
+
+        if( allCurrentTasks.isEmpty() && toDo.equals(listHeader.getText()) ) {
+
+            Animation fadeOut = AnimationUtils.loadAnimation(MainActivity.this, android.R.anim.fade_out);
+            fadeOut.setDuration(800);
+
+            final Animation fadeIn = AnimationUtils.loadAnimation(MainActivity.this, android.R.anim.fade_in);
+            fadeIn.setDuration(800);
+
+            fadeOut.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    listHeader.setText(R.string.header_all_set);
+                    listHeader.startAnimation(fadeIn);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+
+            listHeader.startAnimation(fadeOut);
+        } else if( !allCurrentTasks.isEmpty() ) {
+            listHeader.setText(R.string.to_do);
+        }
+    }
+
     private ArrayList<Task> getTasksFromSharedPreferences() {
 
         SharedPreferences prefs = getSharedPreferences("TasksPrefs", MODE_PRIVATE);
@@ -169,7 +207,7 @@ public class MainActivity extends AppCompatActivity
 
             return readTasks;
         }
-        return myTasks;
+        return TasksDB.getMyTasks();
     }
 
     private void updateTasksInSharedPreferences() {
@@ -243,6 +281,7 @@ public class MainActivity extends AppCompatActivity
                             allCurrentTasks.remove(currentTask);
                             adapter.notifyDataSetChanged();
                             updateTasksInSharedPreferences();
+                            updateHeader();
                         }
 
                         @Override
