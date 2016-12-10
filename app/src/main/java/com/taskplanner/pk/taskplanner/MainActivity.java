@@ -139,11 +139,11 @@ public class MainActivity extends AppCompatActivity
 
     public void setupDefaultCategories() {
 
-        CategoriesManager.addNewCategory(getString(R.string.uncategorized), getString(R.string.gray));
-        CategoriesManager.addNewCategory(getString(R.string.home), getString(R.string.orange));
-        CategoriesManager.addNewCategory(getString(R.string.work), getString(R.string.blue));
-        CategoriesManager.addNewCategory(getString(R.string.sport), getString(R.string.green));
-        CategoriesManager.addNewCategory(getString(R.string.travel), getString(R.string.purple));
+        CategoriesManager.addNewCategory(getString(R.string.uncategorized), -1);
+        CategoriesManager.addNewCategory(getString(R.string.home), 4);
+        CategoriesManager.addNewCategory(getString(R.string.work), 0);
+        CategoriesManager.addNewCategory(getString(R.string.sport), 2);
+        CategoriesManager.addNewCategory(getString(R.string.travel), 5);
     }
 
     public void loadAllTasks() {
@@ -337,7 +337,7 @@ public class MainActivity extends AppCompatActivity
                 itemView.jumpDrawablesToCurrentState();
             }
 
-            itemView = ItemBgColorManager.setBackgroundByCategory(itemView, taskCategory, MainActivity.this);
+            itemView = ItemBgColorManager.setBackgroundByCategory(itemView, taskCategory);
 
             return itemView;
         }

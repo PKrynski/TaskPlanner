@@ -70,7 +70,10 @@ public class EditCategoryActivity extends AppCompatActivity {
 
     private void updateCategory() {
 
-        currentCategory.update(categoryColor);
+        List<String> colors = Arrays.asList(getResources().getStringArray(R.array.colors_array));
+        int colorId = colors.indexOf(categoryColor);
+
+        currentCategory.update(colorId);
 
         saveCategoriesInSharedPreferences();
         finish();
@@ -94,8 +97,11 @@ public class EditCategoryActivity extends AppCompatActivity {
 
                 categoryColor = picked_color;
 
+                List<String> colors = Arrays.asList(getResources().getStringArray(R.array.colors_array));
+                int colorId = colors.indexOf(picked_color);
+
                 View colorView = findViewById(R.id.LinearLayoutColor);
-                colorView = ItemBgColorManager.setBackgroundByColorName(colorView, picked_color, EditCategoryActivity.this);
+                colorView = ItemBgColorManager.setBackgroundByColorName(colorView, colorId);
                 colorView.invalidate();
             }
 

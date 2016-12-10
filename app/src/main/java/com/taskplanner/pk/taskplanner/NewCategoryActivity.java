@@ -39,7 +39,10 @@ public class NewCategoryActivity extends AppCompatActivity {
             Toast.makeText(this, "You have to enter a category name.", Toast.LENGTH_SHORT).show();
         } else {
 
-            CategoriesManager.addNewCategory(categoryName, categoryColor);
+            List<String> colors = Arrays.asList(getResources().getStringArray(R.array.colors_array));
+            int colorId = colors.indexOf(categoryColor);
+
+            CategoriesManager.addNewCategory(categoryName, colorId);
 
             String message = "New category '" + categoryName + "' created!";
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
@@ -65,8 +68,11 @@ public class NewCategoryActivity extends AppCompatActivity {
 
                 categoryColor = picked_color;
 
+                List<String> colors = Arrays.asList(getResources().getStringArray(R.array.colors_array));
+                int colorId = colors.indexOf(picked_color);
+
                 View colorView = findViewById(R.id.LinearLayoutColor);
-                colorView = ItemBgColorManager.setBackgroundByColorName(colorView, picked_color, NewCategoryActivity.this);
+                colorView = ItemBgColorManager.setBackgroundByColorName(colorView, colorId);
                 colorView.invalidate();
             }
 

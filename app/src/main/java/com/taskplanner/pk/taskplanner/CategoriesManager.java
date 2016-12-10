@@ -6,7 +6,8 @@ public class CategoriesManager {
 
     private static ArrayList<Category> categoriesArrayList = new ArrayList<>();
 
-    public static void addNewCategory(String name, String color) {
+    public static void addNewCategory(String name, int color) {
+
 
         Category my_category = new Category(name, color);
         categoriesArrayList.add(my_category);
@@ -31,7 +32,7 @@ public class CategoriesManager {
         return categoriesNames;
     }
 
-    public static String getCategoryColor(String categoryName) {
+    public static int getCategoryColor(String categoryName) {
 
         for( Category current_category : categoriesArrayList) {
 
@@ -40,7 +41,7 @@ public class CategoriesManager {
             }
         }
 
-        return "default";
+        return -1;
     }
 
 }

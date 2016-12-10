@@ -1,42 +1,43 @@
 package com.taskplanner.pk.taskplanner;
 
-import android.content.Context;
 import android.view.View;
 
 public class ItemBgColorManager {
 
-    public static View setBackgroundByCategory(View view, String category, Context context) {
+    public static View setBackgroundByCategory(View view, String category) {
 
-        String color = CategoriesManager.getCategoryColor(category);
+        int color = CategoriesManager.getCategoryColor(category);
 
-        view = setBackgroundByColorName(view, color, context);
+        view = setBackgroundByColorName(view, color);
 
         return view;
     }
 
-    public static View setBackgroundByColorName(View view, String color, Context context) {
+    public static View setBackgroundByColorName(View view, int color) {
 
-        String blue = context.getResources().getString(R.string.blue);
-        String green = context.getResources().getString(R.string.green);
-        String red = context.getResources().getString(R.string.red);
-        String yellow = context.getResources().getString(R.string.yellow);
-        String purple = context.getResources().getString(R.string.purple);
-        String orange = context.getResources().getString(R.string.orange);
 
-        if (color.equals(blue)) {
-            view.setBackgroundResource(R.color.colorBlue100);
-        } else if (color.equals(green)) {
-            view.setBackgroundResource(R.color.colorGreen100);
-        } else if (color.equals(red)) {
-            view.setBackgroundResource(R.color.colorRed100);
-        } else if (color.equals(yellow)) {
-            view.setBackgroundResource(R.color.colorYellow100);
-        } else if (color.equals(purple)) {
-            view.setBackgroundResource(R.color.colorPurple100);
-        } else if (color.equals(orange)) {
-            view.setBackgroundResource(R.color.colorOrange100);
-        } else {
-            view.setBackgroundResource(R.color.colorGray100);
+        switch (color){
+            case 0:
+                view.setBackgroundResource(R.color.colorBlue100);
+                break;
+            case 1:
+                view.setBackgroundResource(R.color.colorRed100);
+                break;
+            case 2:
+                view.setBackgroundResource(R.color.colorGreen100);
+                break;
+            case 3:
+                view.setBackgroundResource(R.color.colorYellow100);
+                break;
+            case 4:
+                view.setBackgroundResource(R.color.colorOrange100);
+                break;
+            case 5:
+                view.setBackgroundResource(R.color.colorPurple100);
+                break;
+            default:
+                view.setBackgroundResource(R.color.colorGray100);
+                break;
         }
 
         return view;
