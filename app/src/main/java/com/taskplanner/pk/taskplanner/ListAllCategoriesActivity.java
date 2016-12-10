@@ -119,7 +119,7 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
             TextView nameTextView = (TextView) itemView.findViewById(R.id.item_textView_category_name);
             nameTextView.setText(currentCategory.getName());
 
-            itemView = ItemBgColorManager.setBackgroundByCategory(itemView, categoryName);
+            itemView = ItemBgColorManager.setBackgroundByCategory(itemView, categoryName, ListAllCategoriesActivity.this);
 
             return itemView;
         }

@@ -66,7 +66,7 @@ public class NewCategoryActivity extends AppCompatActivity {
                 categoryColor = picked_color;
 
                 View colorView = findViewById(R.id.LinearLayoutColor);
-                colorView = ItemBgColorManager.setBackgroundByColorName(colorView, picked_color);
+                colorView = ItemBgColorManager.setBackgroundByColorName(colorView, picked_color, NewCategoryActivity.this);
                 colorView.invalidate();
             }
 

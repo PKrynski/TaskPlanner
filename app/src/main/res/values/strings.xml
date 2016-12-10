@@ -26,14 +26,22 @@
     <string name="sport">Sport</string>
     <string name="travel">Travel</string>
 
+    <string name="blue">blue</string>
+    <string name="red">red</string>
+    <string name="green">green</string>
+    <string name="yellow">yellow</string>
+    <string name="orange">orange</string>
+    <string name="purple">purple</string>
+    <string name="gray">gray</string>
+
     <string-array name="colors_array">
-        <item>blue</item>
-        <item>red</item>
-        <item>green</item>
-        <item>yellow</item>
-        <item>orange</item>
-        <item>purple</item>
-        <item>gray</item>
+        <item>@string/blue</item>
+        <item>@string/red</item>
+        <item>@string/green</item>
+        <item>@string/yellow</item>
+        <item>@string/orange</item>
+        <item>@string/purple</item>
+        <item>@string/gray</item>
     </string-array>
 
     <string name="enter_new_category_name">Enter new category name:</string>

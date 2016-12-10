@@ -27,9 +27,16 @@
     <string name="title_activity_new_task">Nowe zadanie</string>
     <string name="to_do">Do zrobienia:</string>
     <string name="travel">Podróże</string>
-    <string name="uncategorized">Brak kategorii</string>
+    <string name="uncategorized">Ogólne</string>
     <string name="work">Praca</string>
     <string name="home">Dom</string>
     <string name="navigation_drawer_close">Zamknij okno nawigacji</string>
     <string name="navigation_drawer_open">Otwórz okno nawigacji</string>
+    <string name="blue">niebieski</string>
+    <string name="gray">szary</string>
+    <string name="green">zielony</string>
+    <string name="orange">pomarańczowy</string>
+    <string name="purple">fioletowy</string>
+    <string name="red">czerwony</string>
+    <string name="yellow">żółty</string>
 </resources>
