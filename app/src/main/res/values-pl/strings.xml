@@ -39,4 +39,8 @@
     <string name="purple">fioletowy</string>
     <string name="red">czerwony</string>
     <string name="yellow">żółty</string>
+    <string name="category_name_required">Musisz podać nazwę kategorii.</string>
+    <string name="message_new_categ_pt1">Nowa kategoria \'</string>
+    <string name="message_new_categ_pt2">\' została utworzona!</string>
+    <string name="task_name_required">Musisz podać nazwę zadania.</string>
 </resources>

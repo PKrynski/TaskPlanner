@@ -36,7 +36,7 @@ public class NewCategoryActivity extends AppCompatActivity {
         String categoryName = editTextName.getText().toString();
 
         if("".equals(categoryName)) {
-            Toast.makeText(this, "You have to enter a category name.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.category_name_required), Toast.LENGTH_SHORT).show();
         } else {
 
             List<String> colors = Arrays.asList(getResources().getStringArray(R.array.colors_array));
@@ -44,7 +44,7 @@ public class NewCategoryActivity extends AppCompatActivity {
 
             CategoriesManager.addNewCategory(categoryName, colorId);
 
-            String message = "New category '" + categoryName + "' created!";
+            String message = getString(R.string.message_new_categ_pt1) + categoryName + getString(R.string.message_new_categ_pt2);
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             saveCategoriesInSharedPreferences();
             finish();

@@ -35,14 +35,12 @@ public class NewTaskActivity extends AppCompatActivity {
         String taskDescription = editTextDescription.getText().toString();
 
         if("".equals(taskName)) {
-            Toast.makeText(this, "You have to enter a task name.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.task_name_required), Toast.LENGTH_SHORT).show();
         } else {
 
             Task newTask = new Task(taskName, taskDescription, taskCategory);
             TasksDB.addNewTask(newTask);
 
-            //String message = "New task '" + taskName + "' created!";
-            //Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             saveTasksInSharedPreferences();
             finish();
         }

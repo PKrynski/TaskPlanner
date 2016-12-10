@@ -55,4 +55,8 @@
     <string name="description">Description</string>
     <string name="delete">Delete</string>
     <string name="header_all_set">You\'re all set!</string>
+    <string name="category_name_required">You have to enter a category name.</string>
+    <string name="message_new_categ_pt1">New category \'</string>
+    <string name="message_new_categ_pt2">\' created!</string>
+    <string name="task_name_required">You have to enter a task name.</string>
 </resources>
