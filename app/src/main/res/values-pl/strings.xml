@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TaskPlanner</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="all_categories">Wszystkie kategorie:</string>
+    <string name="categories">Kategorie</string>
+    <string name="category">Kategoria</string>
+    <string name="category_name">Nazwa kategorii</string>
+    <string name="completed_tasks">Ukończone zadania</string>
+    <string name="create">Utwórz</string>
+    <string name="delete">Usuń</string>
+    <string name="description">Opis</string>
+    <string name="edit">Edytuj</string>
+    <string name="enter_new_category_name">Podaj nazwę nowej kategorii:</string>
+    <string name="enter_new_task_name">Podaj nazwę nowego zadania:</string>
+    <string name="enter_task_description">Opisz zadanie:</string>
+    <string name="header_all_set">Wszystko zrobione!</string>
+    <string name="new_task">Nowe zadanie</string>
+    <string name="select_category">Wybierz kategorię:</string>
+    <string name="select_category_color">Wybierz kolor kategorii:</string>
+    <string name="sport">Sport</string>
+    <string name="task_name">Nazwa zadania</string>
+    <string name="title_activity_edit_category">Edytuj kategorię</string>
+    <string name="title_activity_edit_task">Edytuj zadanie</string>
+    <string name="title_activity_list_all_categories">Kategorie</string>
+    <string name="title_activity_new_category">Nowa kategoria</string>
+    <string name="title_activity_new_task">Nowe zadanie</string>
+    <string name="to_do">Do zrobienia:</string>
+    <string name="travel">Podróże</string>
+    <string name="uncategorized">Brak kategorii</string>
+    <string name="work">Praca</string>
+    <string name="home">Dom</string>
+    <string name="navigation_drawer_close">Zamknij okno nawigacji</string>
+    <string name="navigation_drawer_open">Otwórz okno nawigacji</string>
+</resources>
