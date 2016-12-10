@@ -43,4 +43,7 @@
     <string name="message_new_categ_pt1">Nowa kategoria \'</string>
     <string name="message_new_categ_pt2">\' została utworzona!</string>
     <string name="task_name_required">Musisz podać nazwę zadania.</string>
+    <string name="message_task_complete_and_delete">Zadanie oznaczone jako ukończone.\nDotknij ponownie by usunąć z listy.</string>
+    <string name="message_task_incomplete">Zadanie oznaczone jako nieukończone.</string>
+    <string name="message_task_complete">Zadanie oznaczone jako ukończone.</string>
 </resources>

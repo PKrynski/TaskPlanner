@@ -59,4 +59,7 @@
     <string name="message_new_categ_pt1">New category \'</string>
     <string name="message_new_categ_pt2">\' created!</string>
     <string name="task_name_required">You have to enter a task name.</string>
+    <string name="message_task_complete_and_delete">Task marked as complete.\nTap task to remove it from the list.</string>
+    <string name="message_task_incomplete">Task marked as incomplete.</string>
+    <string name="message_task_complete">Task marked as completed.</string>
 </resources>

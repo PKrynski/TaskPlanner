@@ -122,14 +122,8 @@ public class MainActivity extends AppCompatActivity
             runNewTaskActivity();
         } else if (id == R.id.nav_categories) {
             runListAllCategoriesActivity();
-        } else if (id == R.id.nav_completed) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        }else if (id == R.id.nav_new_category) {
+            runNewCategoryActivity();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -254,6 +248,11 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void runNewCategoryActivity() {
+        Intent intent = new Intent(this, NewCategoryActivity.class);
+        startActivity(intent);
+    }
+
     private void registerClicks() {
 
         final ListView list = (ListView) findViewById(R.id.tasksListView);
@@ -363,12 +362,12 @@ public class MainActivity extends AppCompatActivity
             activateSidebar(sidebar);
 
             currentTask.setAsComplete();
-            message = "Task marked as complete.\nTap task to remove it from the list.";
+            message = getString(R.string.message_task_complete_and_delete);
         } else {
             deactivateSidebar(sidebar);
 
             currentTask.setAsIncomplete();
-            message = "Task marked as incomplete.";
+            message = getString(R.string.message_task_incomplete);
         }
 
         Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();

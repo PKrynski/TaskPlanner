@@ -77,10 +77,10 @@ public class DisplayTaskDetailsActivity extends AppCompatActivity {
 
         if (checked) {
             currentTask.setAsComplete();
-            message = "Task marked as completed.";
+            message = getString(R.string.message_task_complete);
         } else {
             currentTask.setAsIncomplete();
-            message = "Task marked as incomplete.";
+            message = getString(R.string.message_task_incomplete);
         }
 
         Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
