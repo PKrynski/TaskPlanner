@@ -46,4 +46,5 @@
     <string name="message_task_complete_and_delete">Zadanie oznaczone jako ukończone.\nDotknij ponownie by usunąć z listy.</string>
     <string name="message_task_incomplete">Zadanie oznaczone jako nieukończone.</string>
     <string name="message_task_complete">Zadanie oznaczone jako ukończone.</string>
+    <string name="title_activity_task_details">Zadanie</string>
 </resources>

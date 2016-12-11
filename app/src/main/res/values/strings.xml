@@ -2,6 +2,7 @@
     <string name="app_name">TaskPlanner</string>
 
     <string name="title_activity_new_task">New Task</string>
+    <string name="title_activity_task_details">Task</string>
     <string name="title_activity_list_all_categories">Categories</string>
     <string name="title_activity_new_category">New Category</string>
     <string name="title_activity_edit_task">Edit Task</string>
