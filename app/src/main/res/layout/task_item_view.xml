@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:paddingBottom="35dp"
+        android:paddingBottom="10dp"
         android:id="@+id/item_textView_task_name"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
@@ -33,10 +33,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:paddingStart="@dimen/activity_horizontal_margin"
         android:paddingBottom="10dp"
         android:id="@+id/item_textView_task_category"
         android:textStyle="normal|italic"
-        android:layout_below="@+id/checkBox_completed"
+        android:layout_below="@+id/item_textView_task_name"
         android:layout_alignEnd="@+id/checkBox_completed"
         android:layout_alignParentBottom="true"/>
 
@@ -46,6 +47,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/right_sidebar"
-        android:layout_alignBottom="@+id/item_textView_task_name"
+        android:layout_alignBottom="@+id/item_textView_task_category"
         />
 </RelativeLayout>
