@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        setupDefaultCategories();
     }
 
     @Override
@@ -195,6 +193,21 @@ public class MainActivity extends AppCompatActivity
         editor.apply();
     }
 
+    private void saveCategoriesInSharedPreferences() {
+
+        ArrayList<Category> myCategories = CategoriesManager.getMyCategories();
+
+        SharedPreferences prefs = getSharedPreferences("CategoriesPrefs", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new Gson();
+        String categories = gson.toJson(myCategories);
+
+        editor.putString("categories", categories);
+        editor.apply();
+    }
+
     private void loadAllCategories() {
 
         SharedPreferences prefs = getSharedPreferences("CategoriesPrefs", MODE_PRIVATE);
@@ -205,6 +218,9 @@ public class MainActivity extends AppCompatActivity
             Type type = new TypeToken<ArrayList<Category>>(){}.getType();
             ArrayList<Category> readCategories = gson.fromJson(categories, type);
             CategoriesManager.setMyCategories(readCategories);
+        } else {
+            setupDefaultCategories();
+            saveCategoriesInSharedPreferences();
         }
     }
 
