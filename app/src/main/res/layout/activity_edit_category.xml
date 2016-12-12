@@ -24,7 +24,7 @@
             android:inputType="textPersonName"/>
 
         <LinearLayout
-            android:id="@+id/LinearLayoutColor"
+            android:id="@+id/LayoutColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin"

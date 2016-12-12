@@ -100,7 +100,7 @@ public class EditCategoryActivity extends AppCompatActivity {
                 List<String> colors = Arrays.asList(getResources().getStringArray(R.array.colors_array));
                 int colorId = colors.indexOf(picked_color);
 
-                View colorView = findViewById(R.id.LinearLayoutColor);
+                View colorView = findViewById(R.id.LayoutColor);
                 colorView = ItemBgColorManager.setBackgroundByColorName(colorView, colorId);
                 colorView.invalidate();
             }
