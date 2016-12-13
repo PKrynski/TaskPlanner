@@ -253,6 +253,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, final View viewClicked, final int position, long id) {
 
+                int firstVisiblePosition = list.getFirstVisiblePosition();
+
                 final Task currentTask = allCurrentTasks.get(position);
 
                 boolean complete = currentTask.isCompleted();
@@ -281,7 +283,8 @@ public class MainActivity extends AppCompatActivity
                         }
                     });
 
-                    list.getChildAt(position).startAnimation(anim);
+                    int indexToBeAnimated = position - firstVisiblePosition;
+                    list.getChildAt(indexToBeAnimated).startAnimation(anim);
 
                 } else {
                     displayTaskDetails(position);
@@ -342,9 +345,12 @@ public class MainActivity extends AppCompatActivity
 
         ListView listView = (ListView) findViewById(R.id.tasksListView);
 
-        int index = listView.indexOfChild(relativeLayout);
+        int relativeIndex = listView.indexOfChild(relativeLayout);
+        int firstVisiblePosition = listView.getFirstVisiblePosition();
 
-        Task currentTask = allCurrentTasks.get(index);
+        int itemIndex = relativeIndex + firstVisiblePosition;
+
+        Task currentTask = allCurrentTasks.get(itemIndex);
 
         boolean checked = ((CheckBox) view).isChecked();
 

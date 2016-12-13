@@ -157,6 +157,8 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.categoriesListView);
         final Category selectedCategory = currentCategories.get(position);
 
+        int firstVisiblePosition = list.getFirstVisiblePosition();
+
         Animation anim = AnimationUtils.loadAnimation(ListAllCategoriesActivity.this, R.anim.move_right);
 
         anim.setAnimationListener(new Animation.AnimationListener() {
@@ -178,7 +180,8 @@ public class ListAllCategoriesActivity extends AppCompatActivity {
             }
         });
 
-        list.getChildAt(position).startAnimation(anim);
+        int indexToBeAnimated = position - firstVisiblePosition;
+        list.getChildAt(indexToBeAnimated).startAnimation(anim);
     }
 
     private void saveCategoriesInSharedPreferences() {
