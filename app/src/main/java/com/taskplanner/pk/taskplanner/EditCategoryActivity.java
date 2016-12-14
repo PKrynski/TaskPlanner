@@ -87,7 +87,7 @@ public class EditCategoryActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        spinner.setSelection(colors.indexOf(currentCategory.getColor()));
+        spinner.setSelection(currentCategory.getColor());
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
